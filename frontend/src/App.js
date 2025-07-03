@@ -17,7 +17,7 @@ function App() {
   const handleAnalyze = async (jobDesc) => {
     setJobText(jobDesc);
 
-    const matchRes = await fetch('http://localhost:5000/match_score', {
+    const matchRes = await fetch('https://matchcraft-ll5b.onrender.com/match_score', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })
@@ -26,7 +26,7 @@ function App() {
     const matchData = await matchRes.json();
     setMatchResult(matchData);
 
-    const letterRes = await fetch('http://localhost:5000/generate_cover_letter', {
+    const letterRes = await fetch('https://matchcraft-ll5b.onrender.com/generate_cover_letter', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })

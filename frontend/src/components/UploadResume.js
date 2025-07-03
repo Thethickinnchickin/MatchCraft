@@ -8,7 +8,7 @@ const UploadResume = ({ onUpload }) => {
     const formData = new FormData();
     formData.append('resume', file);
 
-    const res = await fetch('http://localhost:5000/upload_resume', {
+    const res = await fetch('https://matchcraft-ll5b.onrender.com/upload_resume', {
       method: 'POST',
       body: formData
     });
