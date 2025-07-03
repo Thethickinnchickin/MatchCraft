@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const JobInput = ({ onSubmit }) => {
+const JobInput = ({ onSubmit, loading }) => {
   const [jobDesc, setJobDesc] = useState('');
 
   const handleSubmit = async () => {
@@ -16,8 +16,12 @@ const JobInput = ({ onSubmit }) => {
         value={jobDesc}
         onChange={(e) => setJobDesc(e.target.value)}
       />
-      <button className="mt-2 bg-blue-600 text-white px-4 py-2 rounded" onClick={handleSubmit}>
-        Analyze
+      <button
+        className="mt-2 bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+        onClick={handleSubmit}
+        disabled={loading}
+      >
+        {loading ? 'Analyzing...' : 'Analyze'}
       </button>
     </div>
   );

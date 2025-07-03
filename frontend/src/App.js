@@ -9,6 +9,7 @@ function App() {
   const [jobText, setJobText] = useState('');
   const [matchResult, setMatchResult] = useState(null);
   const [coverLetter, setCoverLetter] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleResumeUpload = (text) => {
     setResumeText(text);
@@ -16,31 +17,36 @@ function App() {
 
   const handleAnalyze = async (jobDesc) => {
     setJobText(jobDesc);
+    setLoading(true);
 
-    const matchRes = await fetch('https://matchcraft-ll5b.onrender.com/match_score', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })
-    });
+    try {
+      const matchRes = await fetch('https://matchcraft-ll5b.onrender.com/match_score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })
+      });
 
-    const matchData = await matchRes.json();
-    setMatchResult(matchData);
+      const matchData = await matchRes.json();
+      setMatchResult(matchData);
 
-    const letterRes = await fetch('https://matchcraft-ll5b.onrender.com/generate_cover_letter', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })
-    });
+      const letterRes = await fetch('https://matchcraft-ll5b.onrender.com/generate_cover_letter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })
+      });
 
-    const letterData = await letterRes.json();
-    setCoverLetter(letterData.cover_letter);
+      const letterData = await letterRes.json();
+      setCoverLetter(letterData.cover_letter);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4 text-center">MatchCraft</h1>
       <UploadResume onUpload={handleResumeUpload} />
-      <JobInput onSubmit={handleAnalyze} />
+      <JobInput onSubmit={handleAnalyze} loading={loading} />
       <MatchResults result={matchResult} />
       <CoverLetter letter={coverLetter} />
     </div>
