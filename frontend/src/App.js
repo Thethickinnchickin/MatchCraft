@@ -26,6 +26,8 @@ function App() {
         body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })
       });
 
+      console.log("Stage 1");
+
       const matchData = await matchRes.json();
       setMatchResult(matchData);
 
@@ -34,6 +36,8 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ resume_text: resumeText, job_description: jobDesc })
       });
+
+      console.log("Stage 2");
 
       const letterData = await letterRes.json();
       setCoverLetter(letterData.cover_letter);
