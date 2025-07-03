@@ -3,6 +3,7 @@ services:
     name: matchcraft-backend
     env: python
     plan: free
+    rootDir: backend
     buildCommand: ""
     startCommand: gunicorn app:app
     envVars:
