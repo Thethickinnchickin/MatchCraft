@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: matchcraft-backend
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: OPENAI_API_KEY
+        value: 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
