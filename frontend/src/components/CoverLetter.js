@@ -1,5 +1,5 @@
 import React from 'react';
-import Loader from './Loader';
+import Loader from './Loading';
 
 const CoverLetter = ({ letter, loading }) => {
   if (loading) return <Loader />;
