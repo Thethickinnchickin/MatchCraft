@@ -1,8 +1,8 @@
 import React from 'react';
-import Loader from './Loading';
+import Loading from './Loading';
 
 const MatchResults = ({ result, loading }) => {
-  if (loading) return <Loader />;
+  if (loading) return <Loading />;
 
   if (!result) return null;
 

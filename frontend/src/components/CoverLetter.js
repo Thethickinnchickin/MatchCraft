@@ -1,8 +1,8 @@
 import React from 'react';
-import Loader from './Loading';
+import Loading from './Loading';
 
 const CoverLetter = ({ letter, loading }) => {
-  if (loading) return <Loader />;
+  if (loading) return <Loading />;
 
   if (!letter) return null;
 
