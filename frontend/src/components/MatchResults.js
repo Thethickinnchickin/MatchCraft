@@ -1,6 +1,9 @@
 import React from 'react';
+import Loader from './Loader';
 
-const MatchResults = ({ result }) => {
+const MatchResults = ({ result, loading }) => {
+  if (loading) return <Loader />;
+
   if (!result) return null;
 
   return (

@@ -41,7 +41,7 @@ function App() {
 
       const letterData = await letterRes.json();
       setCoverLetter(letterData.cover_letter);
-      setLoading(false);
+      //setLoading(false);
       
     } finally {
       setLoading(false);
@@ -53,8 +53,8 @@ function App() {
       <h1 className="text-3xl font-bold mb-4 text-center">MatchCraft</h1>
       <UploadResume onUpload={handleResumeUpload} />
       <JobInput onSubmit={handleAnalyze} loading={loading} />
-      <MatchResults result={matchResult} />
-      <CoverLetter letter={coverLetter} />
+      <CoverLetter letter={coverLetter} loading={loading}/>
+      <MatchResults result={matchResult} loading={loading}/>
     </div>
   );
 }

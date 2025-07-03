@@ -1,6 +1,9 @@
 import React from 'react';
+import Loader from './Loader';
 
-const CoverLetter = ({ letter }) => {
+const CoverLetter = ({ letter, loading }) => {
+  if (loading) return <Loader />;
+
   if (!letter) return null;
 
   return (
