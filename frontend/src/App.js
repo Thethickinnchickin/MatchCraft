@@ -37,9 +37,8 @@ function App() {
 
       const letterData = await letterRes.json();
       setCoverLetter(letterData.cover_letter);
-      if(letterData.length > 0) {
-        setLoading(false);
-      }
+      setLoading(false);
+      
     } finally {
       setLoading(false);
     }
