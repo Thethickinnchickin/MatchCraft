@@ -1,7 +1,7 @@
 import './Loading.css';
 
 const Loader = () => (
-    <div id="load">
+    <div id="load" className='p-3'>
     <div>G</div>
     <div>N</div>
     <div>I</div>
